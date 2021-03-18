@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -14,6 +15,8 @@ import com.example.clock.helper.Constants;
 
 public class MainActivity extends AppCompatActivity {
     AlarmAdepter alarmAdepter;
+    Button editButton;
+    Button completeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +24,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ListView listView = findViewById(R.id.alarmList);
+        editButton = findViewById(R.id.editButton);
+        completeButton = findViewById(R.id.completeButton);
 
         alarmAdepter = new AlarmAdepter(this);
 
         listView.setAdapter(alarmAdepter);
+
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editModeUpdate(true);
+            }
+        });
+
+        completeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editModeUpdate(false);
+            }
+        });
 
         findViewById(R.id.addButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,5 +71,12 @@ public class MainActivity extends AppCompatActivity {
     public void startAddAlarmActivity(Intent intent) {
         intent.setClass(this, AddAlarmActivity.class);
         startActivityForResult(intent, Constants.RC_SUCCESS);
+    }
+
+    public void editModeUpdate(boolean isEditMode) {
+        editButton.setVisibility(isEditMode ? View.GONE : View.VISIBLE);
+        completeButton.setVisibility(isEditMode ? View.VISIBLE : View.GONE);
+        alarmAdepter.editMode(isEditMode);
+        alarmAdepter.notifyDataSetChanged();
     }
 }

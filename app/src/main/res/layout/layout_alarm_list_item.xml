@@ -8,6 +8,27 @@
     android:paddingLeft="10dp">
 
     <LinearLayout
+        android:id="@+id/deleteButtonLayout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.5"
+        android:gravity="center_vertical"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/deleteButton"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:text="⎺"
+            android:textSize="25sp"
+            android:textColor="#ffffff"
+            android:background="@drawable/layout_switch"
+            android:backgroundTint="#ff0000"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="4"
