@@ -3,22 +3,22 @@ package com.example.clock;
 import java.util.Calendar;
 
 public class Alarm {
-    private String time;
+    private Calendar time;
     private String label;
     private boolean isSwitchOn;
     private boolean isEditMode;
 
-    public Alarm(String time, String label, boolean isSwitchOn) {
+    public Alarm(Calendar time, String label, boolean isSwitchOn) {
         this.time = time;
         this.label = label;
         this.isSwitchOn = isSwitchOn;
     }
 
-    public String getTime() {
+    public Calendar getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(Calendar time) {
         this.time = time;
     }
 
@@ -34,8 +34,8 @@ public class Alarm {
         return isSwitchOn;
     }
 
-    public void setSwitchOn(boolean switchOn) {
-        isSwitchOn = switchOn;
+    public void setSwitchOn(boolean isSwitchOn) {
+        this.isSwitchOn = isSwitchOn;
     }
 
     public boolean isEditMode() {

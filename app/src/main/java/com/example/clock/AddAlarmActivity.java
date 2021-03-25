@@ -28,7 +28,7 @@ public class AddAlarmActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_alarm);
 
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("a hh:mm");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("a h:mm");
 
         cancelButton = findViewById(R.id.cancelButton);
         saveButton = findViewById(R.id.saveButton);
@@ -55,7 +55,7 @@ public class AddAlarmActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.putExtra(Constants.KEY_ALARM_TIME, alarmTime.getText().toString());
+                intent.putExtra(Constants.KEY_ALARM_TIME, calendar.getTimeInMillis());
                 intent.putExtra(Constants.KEY_LABEL, label.getText().toString());
                 setResult(Constants.RC_SUCCESS, intent);
                 finish();

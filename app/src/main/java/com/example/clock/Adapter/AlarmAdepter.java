@@ -3,6 +3,7 @@ package com.example.clock.Adapter;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +18,9 @@ import androidx.core.content.ContextCompat;
 import com.example.clock.Alarm;
 import com.example.clock.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class AlarmAdepter extends BaseAdapter {
@@ -28,14 +31,31 @@ public class AlarmAdepter extends BaseAdapter {
         this.context = context;
     }
 
+    public static List<Alarm> getList() {
+        return list;
+    }
+
     public void add(Alarm alarm) {
         list.add(alarm);
+    }
+
+    public Alarm getAlarm(int index) {
+        return list.get(index);
+    }
+
+    public int getSize() {
+        return list.size();
     }
 
     public void editMode(boolean isEditMode) {
         for(int i = 0; i < list.size(); i++) {
             list.get(i).setEditMode(isEditMode);
         }
+    }
+
+    public void setSwitchOn(int index, boolean isSwitchOn) {
+        Log.d("test", "setSwitchOn: " + index + " " + isSwitchOn);
+        list.get(index).setSwitchOn(isSwitchOn);
     }
 
     @Override
@@ -56,16 +76,17 @@ public class AlarmAdepter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Alarm alarm = list.get(position);
+        Calendar calendar = alarm.getTime();
 
-        String meridiem = alarm.getTime().split(" ")[0];
-        String time = alarm.getTime().split(" ")[1];
+        SimpleDateFormat meridiem = new SimpleDateFormat("a");
+        SimpleDateFormat time = new SimpleDateFormat("h:mm");
 
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View view = layoutInflater.inflate(R.layout.layout_alarm_list_item, parent, false);
 
-        ((TextView)view.findViewById(R.id.meridiemText)).setText(meridiem);
-        ((TextView)view.findViewById(R.id.timeText)).setText(time);
+        ((TextView)view.findViewById(R.id.meridiemText)).setText(meridiem.format(calendar.getTimeInMillis()));
+        ((TextView)view.findViewById(R.id.timeText)).setText(time.format(calendar.getTimeInMillis()));
         ((TextView)view.findViewById(R.id.labelText)).setText(alarm.getLabel());
 
         updateSwitch(view, alarm.isSwitchOn());

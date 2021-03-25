@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.example.clock.Adapter.AlarmAdepter;
 import com.example.clock.helper.Constants;
 
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
     AlarmAdepter alarmAdepter;
     Button editButton;
@@ -30,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
         alarmAdepter = new AlarmAdepter(this);
 
         listView.setAdapter(alarmAdepter);
+
+        TimeThread timerThread = new TimeThread(this, alarmAdepter);
+        timerThread.start();
 
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,10 +65,13 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(resultCode == Constants.RC_SUCCESS) {
-            String alarmTime = data.getStringExtra(Constants.KEY_ALARM_TIME);
+            Calendar calendar = Calendar.getInstance();
+            long alarmTime = data.getLongExtra(Constants.KEY_ALARM_TIME, 0);
             String label = data.getStringExtra(Constants.KEY_LABEL);
 
-            alarmAdepter.add(new Alarm(alarmTime, label, true));
+            calendar.setTimeInMillis(alarmTime);
+
+            alarmAdepter.add(new Alarm(calendar, label, true));
             alarmAdepter.notifyDataSetChanged();
         }
     }
