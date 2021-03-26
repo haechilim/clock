@@ -54,8 +54,25 @@ public class AlarmAdepter extends BaseAdapter {
     }
 
     public void setSwitchOn(int index, boolean isSwitchOn) {
-        Log.d("test", "setSwitchOn: " + index + " " + isSwitchOn);
         list.get(index).setSwitchOn(isSwitchOn);
+    }
+
+    public void checkAlarm() {
+        Calendar calendar = Calendar.getInstance();
+
+        for(int i = 0; i < list.size(); i++) {
+            Alarm alarm = list.get(i);
+
+            if(!alarm.isSwitchOn()) continue;
+
+            Calendar alarmTime = alarm.getTime();
+
+            if (calendar.get(Calendar.HOUR) == alarmTime.get(Calendar.HOUR) &&
+                    calendar.get(Calendar.MINUTE) == alarmTime.get(Calendar.MINUTE) &&
+                    calendar.get(Calendar.SECOND) == 0) {
+                setSwitchOn(i, false);
+            }
+        }
     }
 
     @Override

@@ -20,29 +20,14 @@ public class TimeThread extends Thread {
 
     @Override
     public void run() {
-        List<Calendar> alarmList;
-        Calendar currentCalender;
-
         while (true) {
-            alarmList = getCalendersOfAlarmTimeList();
-            currentCalender = Calendar.getInstance();
-
-            for(int i = 0; i < alarmList.size(); i++) {
-                Calendar alarmTime = alarmList.get(i);
-
-                if(currentCalender.get(Calendar.HOUR) == alarmTime.get(Calendar.HOUR) &&
-                        currentCalender.get(Calendar.MINUTE) == alarmTime.get(Calendar.MINUTE) &&
-                            currentCalender.get(Calendar.SECOND) == 0) {
-                    alarmAdepter.setSwitchOn(i, false);
-
-                    ((MainActivity)context).runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            alarmAdepter.notifyDataSetChanged();
-                        }
-                    });
+            alarmAdepter.checkAlarm();
+            ((MainActivity)context).runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    alarmAdepter.notifyDataSetChanged();
                 }
-            }
+            });
 
             try {
                 Thread.sleep(500);
@@ -50,15 +35,5 @@ public class TimeThread extends Thread {
                 Log.d("test", e.toString());
             }
         }
-    }
-
-    private List<Calendar> getCalendersOfAlarmTimeList() {
-        List<Calendar> calendarList = new ArrayList<>();
-
-        for(int i = 0; i < alarmAdepter.getSize(); i++) {
-            calendarList.add(alarmAdepter.getAlarm(i).getTime());
-        }
-
-        return calendarList;
     }
 }

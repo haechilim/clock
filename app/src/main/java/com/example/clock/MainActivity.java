@@ -64,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        editModeUpdate(false);
+
         if(resultCode == Constants.RC_SUCCESS) {
             Calendar calendar = Calendar.getInstance();
             long alarmTime = data.getLongExtra(Constants.KEY_ALARM_TIME, 0);
