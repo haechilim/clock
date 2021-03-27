@@ -22,10 +22,12 @@ public class TimeThread extends Thread {
     public void run() {
         while (true) {
             alarmAdepter.checkAlarm();
+
             ((MainActivity)context).runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     alarmAdepter.notifyDataSetChanged();
+                    ((MainActivity)context).updateStopWatch();
                 }
             });
 
