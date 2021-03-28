@@ -5,10 +5,6 @@ import android.util.Log;
 
 import com.example.clock.Adapter.AlarmAdepter;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-
 public class TimeThread extends Thread {
     private Context context;
     private AlarmAdepter alarmAdepter;
@@ -27,7 +23,8 @@ public class TimeThread extends Thread {
                 @Override
                 public void run() {
                     alarmAdepter.notifyDataSetChanged();
-                    ((MainActivity)context).updateStopWatch();
+                    ((MainActivity)context).updateStopwatch();
+                    ((MainActivity)context).updateTimer();
                 }
             });
 

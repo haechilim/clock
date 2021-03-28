@@ -8,6 +8,9 @@ public class Constants {
     public final static int ALARM_PAGE = 0;
     public final static int STOPWATCH_PAGE = 1;
     public final static int TIMER_PAGE = 2;
+    public final static int STOPWATCH_MODE_READY = 0;
+    public final static int STOPWATCH_MODE_START = 1;
+    public final static int STOPWATCH_MODE_STOP = 2;
     public final static int TIMER_MODE_READY = 0;
     public final static int TIMER_MODE_START = 1;
     public final static int TIMER_MODE_STOP = 2;
