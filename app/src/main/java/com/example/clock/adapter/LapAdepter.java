@@ -1,4 +1,4 @@
-package com.example.clock.Adapter;
+package com.example.clock.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,9 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.example.clock.Lap;
+import com.example.clock.domain.Lap;
 import com.example.clock.R;
-import com.example.clock.helper.Constants;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -50,6 +49,7 @@ public class LapAdepter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         Lap lap = list.get(position);
 
+        // TODO 뷰 재활용하도록 수정
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View view = layoutInflater.inflate(R.layout.layout_lap_list_item, parent, false);

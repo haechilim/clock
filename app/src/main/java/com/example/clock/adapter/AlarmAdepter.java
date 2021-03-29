@@ -1,21 +1,18 @@
-package com.example.clock.Adapter;
+package com.example.clock.adapter;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
-import com.example.clock.Alarm;
+import com.example.clock.domain.Alarm;
 import com.example.clock.R;
 
 import java.text.SimpleDateFormat;

@@ -37,6 +37,7 @@ public class AddAlarmActivity extends AppCompatActivity {
 
         Intent data = getIntent();
 
+        // TODO 시간값이 넘어오면 편집, 아니면 새로 추가
         boolean isNewAlarm = data.getBooleanExtra(Constants.KEY_IS_NEW_ALARM, false);
 
         if(isNewAlarm) {

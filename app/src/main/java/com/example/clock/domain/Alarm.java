@@ -1,11 +1,11 @@
-package com.example.clock;
+package com.example.clock.domain;
 
 import java.util.Calendar;
 
 public class Alarm {
     private Calendar time;
     private String label;
-    private boolean isSwitchOn;
+    private boolean isSwitchOn; // TODO isEnabled
     private boolean isEditMode;
 
     public Alarm(Calendar time, String label, boolean isSwitchOn) {

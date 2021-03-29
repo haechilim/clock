@@ -1,12 +1,12 @@
-package com.example.clock;
+package com.example.clock.domain;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class Lap {
-    private static int lapNumber = 1;
+    private static int lapNumber = 1; // TODO sequence(seq)
     private String lapName;
-    private String time;
+    private String time; // TODO LocalTime
 
     public Lap(Calendar calendar, boolean isFirstLap) {
         if(isFirstLap) lapNumber = 1;
